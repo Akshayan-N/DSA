@@ -19,6 +19,7 @@ int main(int argc, char* argv[]){
 
   for(int index = 0; string[index] != '\0'; index++) {
     
+    //---[Hash Function]---//
     char letter = tolower(string[index]);
     hash_index =  letter - 'a'; // no need for typecasting
     
