@@ -1,42 +1,45 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int binary_search(int array[], int low, int high, int target){
-    if (low  > high){
-        return -1;
-    }
+int binary_search(int* array, int low, int high, int target) {
+  //---[Binary Search is for only sorted Array]--//
+  //Uses Recursion
+  if (low > high) {
+    return -1;
+  }
 
-    int mid = low + (high - low) / 2;
-
-    if (array[mid] == target){
-        return mid;
-    } else if (array[mid] < target){
-        return binary_search(array, mid+1, high, target);
-    } else{
-        return binary_search(array, low, mid-1, target);
-    }
-
+  int mid = (low + high) / 2;
+  
+  int current_value = array[mid];
+  if (current_value == target) {
+    return mid;
+  } else if (current_value > target) {
+    return binary_search(array, low, mid-1, target);
+  } else  {
+    return binary_search(array, mid+1, high, target);
+  }
 }
+int main(int argc, char* argv[]) {
 
-// comment the function when number list is sorted
-int compare(int a, int b){
-    return a - b;
-}
+  if (argc < 2) {
+    printf("Usage: %s <Array>", argv[0]);
+    return 1;
+  }
 
-int main(){
-    int number_list[] = {1, 5, 6, 8, 2, 9};
-    
-    int number;
-    printf("Enter the number to search : ");
-    scanf("%i", &number);
+  int array_size = argc - 1;
+  int array[array_size];
+  for (int index = 1; index <= array_size; index++){
+    array[index-1] = atoi(argv[index]); 
+  }
 
-    int size = sizeof(number_list) / sizeof(number_list[0]);
-    qsort(number_list, size, sizeof(number_list[0]), compare); // comment when number list is sorted
+  int target;
+  printf("Enter the element to search: ");
+  scanf("%i", &target);
 
-    int index = binary_search(number_list, 0, size-1, number);
-
-    if (index != -1){
-        printf("number %i is present in the index %i", number, index);
-    } else {
-        printf("Element not found in the list");
-    }
+  int index = binary_search(array, 0, array_size, target);
+  if (index == -1) {
+    printf("Element not found in the array\n");
+  } else {
+    printf("Element found in the index %i\n", index);
+  }
 }
