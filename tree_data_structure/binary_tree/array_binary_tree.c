@@ -43,16 +43,47 @@ void inOrderTraversal(int* array, int index, int size) {
 }
 
 void breathFirstSearch(int* array,  int size) {
-  //---[I dont have the correct code but just loop and printall the elemenets]---//
+  int queue[size];
+  int head = -1;
+  int tail = 0;
 
-  //---[Check the LinkedList Representation of Tree for this fuction]---//
+  queue[0] = 0;
+  int index;
+  while (head != tail) {
+    index = queue[++head];
+
+    printf("%i ", array[index]);
+    
+    int left_child = index * 2 + 1;
+    int right_child = left_child + 1;
+    if (left_child < size) {
+      queue[++tail] = left_child;
+    }
+    if (right_child < size) {
+      queue[++tail] = right_child;
+    }
+  }
 }
 
-void depthFirstSearch(int* array, int index, int size) {
-  //---[This will be Complex Process without LinkedList representation]---//
+void depthFirstSearch(int* array, int size) {
+  int stack[size];
+  int stack_pointer = 0;
+  stack[stack_pointer] = 0;
 
-  //---[Check the LinkedList Representation of Tree for this fuction]---//
+  int index;
+  while(stack_pointer != -1) {
+    index = stack[stack_pointer--];
+    printf("%i ", array[index]);
 
+    int left_child = index * 2 + 1;
+    int right_child = left_child + 1;
+    if (right_child < size) {
+      stack[++stack_pointer] = right_child;
+    }
+    if (left_child < size) {
+      stack[++stack_pointer] = left_child;
+    }
+  }
 }
 
 int main(int argc, char* argv[]) {
@@ -93,7 +124,7 @@ int main(int argc, char* argv[]) {
 
   //---[DFS]---//
   printf("DFS : ");
-  depthFirstSearch(array, 0, array_size);
+  depthFirstSearch(array, array_size);
   printf("\n");
   return 0;
 }

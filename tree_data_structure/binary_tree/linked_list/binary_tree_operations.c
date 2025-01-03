@@ -29,7 +29,7 @@ void preOrderTraversal(Node* root) {
 
 void postOrderTraversal(Node* root) {
     
-    if (root == NULL) return ;
+    if (root == NULL) return ;  
 
     postOrderTraversal(root->left);
     postOrderTraversal(root->right);
@@ -51,8 +51,7 @@ void breadthFirstSearch(Node* root) {
 }
 
 void depthFirstSearch(Node* root) {
-    stackNode* head = createStackNode(root);
-    
+    stackNode* head = createStackNode(root);  
     while(head != NULL) {
         Node* currentNode = popStack(&head);
         printf("%i ", currentNode->value);
@@ -60,32 +59,4 @@ void depthFirstSearch(Node* root) {
         pushStack(&head, currentNode->left);
     }
     return ;
-}
-
-int main() {
-    //Array to LinkedList
-    int array[] = {0, 1, 2, 3, 4 , 5, 6};
-
-    Node* root = NULL;
-    root = build_binaryTree(root, array, 0, sizeof(array) / sizeof(array[0]));
-
-    printf("In-Order Traversal : ");
-    InOrderTraversal(root);
-    printf("\n");
-
-    printf("Pre-Order Traversal : ");
-    preOrderTraversal(root);
-    printf("\n");
-
-    printf("Post-Order Traversal : ");
-    postOrderTraversal(root);
-    printf("\n");
-
-    printf("BFS: ");
-    breadthFirstSearch(root);
-    printf("\n");
-
-    printf("DFS: ");
-    depthFirstSearch(root);
-    printf("\n");
 }

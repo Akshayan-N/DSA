@@ -31,8 +31,16 @@
 ### Phase 2: Intermediate Topics  
 - [ ] **Trees**  
   - [ ] Binary Trees  
-    - [ ] Array Representation
+    - [x] Array Representation
+      - [x] Implementation
+      - [x] Traversal
+      - [x] BFS
+      - [x] DFS
     - [ ] Linked List Representation
+      - [x] Implementation
+      - [x] Traversal
+      - [x] BFS
+      - [x] DFS
   - [ ] Binary Search Trees (BST)  
   - [ ] AVL Trees and Red-Black Trees  
 
